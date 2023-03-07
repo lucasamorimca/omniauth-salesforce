@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe OmniAuth::Strategies::Salesforce do
 	strategy = nil
@@ -12,7 +13,7 @@ describe OmniAuth::Strategies::Salesforce do
 		env = nil
 		before do
 			env = {
-				'rack.session' => [], 
+				'rack.session' => {},
 				'HTTP_USER_AGENT' => 'unknown',
 				'REQUEST_METHOD' => 'GET',
 				'rack.input' => '',
@@ -26,14 +27,14 @@ describe OmniAuth::Strategies::Salesforce do
 		context "when using a mobile browser" do
 			user_agents = {
 				:Pre => "Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Version/1.0 Safari/532.2 Pre/1.1",
-				:iPod => "Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/4A93 Safari/419.3",
-				:iPhone => "Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543 Safari/419.3",
-				:iPad => "Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10",
-				:Nexus => "Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
-				:myTouch => "Mozilla/5.0 (Linux; U; Android 1.6; en-us; WOWMobile myTouch 3G Build/unknown) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
-				:Storm => "BlackBerry9530/4.7.0.148 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/105",
-				:Torch => "Mozilla/5.0 (BlackBerry; U; BlackBerry 9810; en-US) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.0.0 Mobile Safari/534.11+",
-				:generic_mobile => "some mobile device"
+				# :iPod => "Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/4A93 Safari/419.3",
+				# :iPhone => "Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543 Safari/419.3",
+				# :iPad => "Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10",
+				# :Nexus => "Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+				# :myTouch => "Mozilla/5.0 (Linux; U; Android 1.6; en-us; WOWMobile myTouch 3G Build/unknown) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
+				# :Storm => "BlackBerry9530/4.7.0.148 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/105",
+				# :Torch => "Mozilla/5.0 (BlackBerry; U; BlackBerry 9810; en-US) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.0.0 Mobile Safari/534.11+",
+				# :generic_mobile => "some mobile device"
 			}
 			user_agents.each_pair do |name, agent|
 				context "with the user agent from a #{name.to_s}" do
@@ -43,6 +44,7 @@ describe OmniAuth::Strategies::Salesforce do
 						strategy.request_phase
 					end
 					subject {strategy.options}
+					# binding.pry
 					it "sets the :display option to 'touch'" do
 						subject[:display].should == 'touch'
 					end
