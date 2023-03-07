@@ -1,5 +1,6 @@
 module OmniAuth
   module Salesforce
-    VERSION = "1.0.3"
+    # Unbounce-owned repo, but updated to include v1.0.5 changes from official gem
+    VERSION = "1.0.5"
   end
 end
