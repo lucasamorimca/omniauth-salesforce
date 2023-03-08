@@ -1,7 +1,6 @@
 require 'omniauth-oauth2'
 require 'openssl'
 require 'base64'
-require 'pry'
 
 module OmniAuth
   module Strategies
@@ -28,13 +27,11 @@ module OmniAuth
         req = Rack::Request.new(@env)
         options.update(req.params)
         ua = req.user_agent.to_s
-        # binding.pry
         if !options.has_key?(:display)
           mobile_request = ua.downcase =~ Regexp.new(MOBILE_USER_AGENTS)
           options[:display] = mobile_request ? 'touch' : 'page'
         end
-        # options[:prompt] = 'login consent'
-        # binding.pry
+        options[:prompt] = 'login consent'
         super
       end
 
