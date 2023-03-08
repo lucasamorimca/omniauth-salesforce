@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 describe OmniAuth::Strategies::Salesforce do
 	strategy = nil
@@ -44,7 +43,6 @@ describe OmniAuth::Strategies::Salesforce do
 						strategy.request_phase
 					end
 					subject {strategy.options}
-					# binding.pry
 					it "sets the :display option to 'touch'" do
 						subject[:display].should == 'touch'
 					end
