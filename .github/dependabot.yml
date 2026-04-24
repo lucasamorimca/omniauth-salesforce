@@ -4,7 +4,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "thursday"
+      day: "monday"
       time: "16:45"
       timezone: "America/Vancouver"
     open-pull-requests-limit: 5
@@ -13,7 +13,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "thursday"
+      day: "monday"
       time: "16:50"
       timezone: "America/Vancouver"
     open-pull-requests-limit: 5
