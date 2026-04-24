@@ -7,7 +7,7 @@ on:
 # contents: read is sufficient since Dependabot only manages github-actions
 # updates here — no lockfile or format remediation push-back needed.
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
 
 jobs:
